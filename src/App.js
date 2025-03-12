@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Carrega os microfrontends expostos
 const RemoteHome = React.lazy(() => import("home/App"));
-const RemoteTransaction = React.lazy(() => import("transaction/App"));
+const RemoteStatement = React.lazy(() => import("statement/App"));
 
 function App() {
   return (
@@ -19,10 +19,10 @@ function App() {
           }
         />
         <Route
-          path="/transaction"
+          path="/statement"
           element={
-            <Suspense fallback={<div>Carregando Transaction...</div>}>
-              <RemoteTransaction />
+            <Suspense fallback={<div>Carregando Statement...</div>}>
+              <RemoteStatement />
             </Suspense>
           }
         />
