@@ -1,4 +1,3 @@
-// src/declarations.d.ts
 declare module "home/App" {
   import { ComponentType } from "react";
   import { State, Actions } from "./store/index.js";
