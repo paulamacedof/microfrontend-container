@@ -1,14 +1,13 @@
 // src/App.js do container
 import React, { Suspense } from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { useGlobalContextActions } from "./state/actions";
-
+import { useTestStore } from "./store";
 // Carrega os microfrontends expostos
 const RemoteHome = React.lazy(() => import("home/App"));
 const RemoteStatement = React.lazy(() => import("statement/App"));
 
 function App() {
-  const { state, actions } = useGlobalContextActions();
+  const { state, actions } = useTestStore();
 
   return (
     <BrowserRouter>
