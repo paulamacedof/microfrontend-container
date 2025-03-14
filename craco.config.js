@@ -10,6 +10,7 @@ module.exports = {
           remotes: {
             home: "home@http://localhost:3001/remoteEntry.js",
             statement: "statement@http://localhost:3002/remoteEntry.js",
+            nav_bar: "nav_bar@http://localhost:3003/remoteEntry.js",
           },
           shared: {
             react: { singleton: true, eager: true, requiredVersion: "^18.3.1" },

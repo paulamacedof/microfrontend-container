@@ -1,6 +1,6 @@
 declare module "home/App" {
   import { ComponentType } from "react";
-  import { State, Actions } from "./store/index.js";
+  import { Actions, State } from "./store/index.js";
 
   interface HomeProps {
     state: State;
@@ -13,7 +13,7 @@ declare module "home/App" {
 
 declare module "statement/App" {
   import { ComponentType } from "react";
-  import { State, Actions } from "./store/index.js";
+  import { Actions, State } from "./store/index.js";
 
   interface StatementProps {
     state: State;
@@ -22,4 +22,17 @@ declare module "statement/App" {
 
   const StatementApp: ComponentType<StatementProps>;
   export default StatementApp;
+}
+
+declare module "nav_bar/App" {
+  import { ComponentType } from "react";
+  import { Actions, State } from "./store/index.js";
+
+  interface NavBarProps {
+    state?: State;
+    actions?: Actions;
+  }
+
+  const NavBarApp: ComponentType<NavBarProps>;
+  export default NavBarApp;
 }

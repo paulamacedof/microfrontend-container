@@ -4,6 +4,7 @@ import { useTestStore } from "./store";
 // Carrega os microfrontends expostos
 const RemoteHome = React.lazy(() => import("home/App"));
 const RemoteStatement = React.lazy(() => import("statement/App"));
+const RemoteNavBar = React.lazy(() => import("nav_bar/App"));
 
 function App() {
   const { state, actions } = useTestStore();
@@ -11,6 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <Link to="/statement">Extrato</Link>
+      <RemoteNavBar />
       <Routes>
         <Route
           path="/"
