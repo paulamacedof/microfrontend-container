@@ -1,5 +1,17 @@
-// No arquivo craco.config.js do microfrontend-container
 const { ModuleFederationPlugin } = require("webpack").container;
+
+const homeUrl =
+  process.env.NODE_ENV === "production"
+    ? process.env.HOME_URL
+    : "http://localhost:3001";
+const statementUrl =
+  process.env.NODE_ENV === "production"
+    ? process.env.STATEMENT_URL
+    : "http://localhost:3002";
+const navBarUrl =
+  process.env.NODE_ENV === "production"
+    ? process.env.NAV_BAR_URL
+    : "http://localhost:3003";
 
 module.exports = {
   webpack: {
@@ -8,9 +20,9 @@ module.exports = {
         new ModuleFederationPlugin({
           name: "container",
           remotes: {
-            home: "home@http://localhost:3001/remoteEntry.js",
-            statement: "statement@http://localhost:3002/remoteEntry.js",
-            nav_bar: "nav_bar@http://localhost:3003/remoteEntry.js",
+            home: `home@${homeUrl}/remoteEntry.js`,
+            statement: `statement@${statementUrl}/remoteEntry.js`,
+            nav_bar: `nav_bar@${navBarUrl}/remoteEntry.js`,
           },
           shared: {
             react: { singleton: true, eager: true, requiredVersion: "^18.3.1" },

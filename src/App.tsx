@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useTestStore } from "./store";
 // Carrega os microfrontends expostos
 const RemoteHome = React.lazy(() => import("home/App"));
@@ -11,8 +11,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Link to="/statement">Extrato</Link>
-      <RemoteNavBar />
+      <Suspense fallback={<div>Carregando NavBar...</div>}>
+        <RemoteNavBar />
+      </Suspense>
       <Routes>
         <Route
           path="/"
