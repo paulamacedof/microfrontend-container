@@ -20,8 +20,6 @@ module.exports = {
         new ModuleFederationPlugin({
           name: "container",
           remotes: {
-            home: `home@${homeUrl}/remoteEntry.js`,
-            statement: `statement@${statementUrl}/remoteEntry.js`,
             nav_bar: `nav_bar@${navBarUrl}/remoteEntry.js`,
           },
           shared: {
@@ -30,6 +28,11 @@ module.exports = {
               singleton: true,
               eager: true,
               requiredVersion: "^18.3.1",
+            },
+            "react-icons": {
+              singleton: true,
+              eager: true,
+              requiredVersion: "^5.4.0",
             },
           },
         })
