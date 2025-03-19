@@ -17,7 +17,7 @@ export const login = async (user: UserRequest) => {
 export const getUser = async (): Promise<UserResponse> => {
   try {
     const response = await api.get(`/user`);
-    return response.data;
+    return response.data.data[0];
   } catch (error) {
     console.error("Error fetching users:", error);
     throw error;
