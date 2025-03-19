@@ -4,6 +4,7 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
     "../home/src/**/*.{js,jsx,ts,tsx}",
     "../statement/src/**/*.{js,jsx,ts,tsx}",
+    "../nav-bar/src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {},
