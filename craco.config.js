@@ -21,15 +21,19 @@ module.exports = {
           name: "container",
           remotes: {
             home: `home@${homeUrl}/remoteEntry.js`,
-            statement: `statement@${statementUrl}/remoteEntry.js`,
-            nav_bar: `nav_bar@${navBarUrl}/remoteEntry.js`,
           },
+
           shared: {
             react: { singleton: true, eager: true, requiredVersion: "^18.3.1" },
             "react-dom": {
               singleton: true,
               eager: true,
               requiredVersion: "^18.3.1",
+            },
+            sonner: {
+              singleton: true,
+              eager: true,
+              requiredVersion: "^1.7.2",
             },
           },
         })

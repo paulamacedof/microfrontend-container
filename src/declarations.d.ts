@@ -1,10 +1,14 @@
 declare module "home/App" {
   import { ComponentType } from "react";
-  import { Actions, State } from "./store/index.js";
 
   interface HomeProps {
-    state: State;
-    actions: Actions;
+    user: UserResponse;
+    account: AccountResponse;
+    transactionStore: {
+      transactions: TransactionResponse[];
+      addTransaction: (transaction: TransactionResponse) => void;
+      getTransactions: (transactions: TransactionResponse[]) => void;
+    };
   }
 
   const HomeApp: ComponentType<HomeProps>;
@@ -31,6 +35,7 @@ declare module "nav_bar/App" {
   interface NavBarProps {
     state?: State;
     actions?: Actions;
+    username: string;
   }
 
   const NavBarApp: ComponentType<NavBarProps>;

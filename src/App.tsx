@@ -1,37 +1,63 @@
-import React, { Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useTestStore } from "./store";
+import { Toaster } from "sonner";
+import { useUserStore } from "./store/userStore";
+import { useTransactionStore } from "./store/transaction";
+import { login } from "./services/userServices";
+import { useAccountStore } from "./store/account";
 // Carrega os microfrontends expostos
-const RemoteHome = React.lazy(() => import("home/App"));
-const RemoteStatement = React.lazy(() => import("statement/App"));
-const RemoteNavBar = React.lazy(() => import("nav_bar/App"));
+const RemoteHome = lazy(() => import("home/App"));
+// const RemoteStatement = React.lazy(() => import("statement/App"));
+// const RemoteNavBar = React.lazy(() => import("nav_bar/App"));
 
 function App() {
-  const { state, actions } = useTestStore();
+  const { user, getUser } = useUserStore();
+  const { account, setAccount } = useAccountStore();
+  const { transactions, addTransaction, getTransactions } =
+    useTransactionStore();
+
+  useEffect(() => {
+    const token = login({
+      email: "teste@gmail.com",
+      password: "testes",
+    });
+    console.log(token);
+    //  setAccount(token);
+    // getUser();
+  }, [getUser]);
 
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Carregando NavBar...</div>}>
-        <RemoteNavBar />
+        {/* <RemoteNavBar username={user.username} /> */}
       </Suspense>
       <Routes>
         <Route
           path="/"
           element={
             <Suspense fallback={<div>Carregando Home...</div>}>
-              <RemoteHome state={state} actions={actions} />
+              <RemoteHome
+                user={user}
+                account={account}
+                transactionStore={{
+                  transactions,
+                  addTransaction,
+                  getTransactions,
+                }}
+              />
             </Suspense>
           }
         />
-        <Route
+        {/* <Route
           path="/statement"
           element={
             <Suspense fallback={<div>Carregando Statement...</div>}>
               <RemoteStatement state={state} actions={actions} />
             </Suspense>
           }
-        />
+        /> */}
       </Routes>
+      <Toaster position="top-right" richColors closeButton />
     </BrowserRouter>
   );
 }
