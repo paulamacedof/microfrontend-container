@@ -20,6 +20,8 @@ export function Sidebar({
     { href: "/other-services", label: "Outros Serviços" },
   ];
 
+  console.log(pathname, "pathname");
+
   const mobileClasses = isOpen ? "translate-x-0" : "-translate-x-full";
 
   return (

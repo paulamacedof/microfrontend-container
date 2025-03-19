@@ -16,11 +16,9 @@ declare module "home/App" {
 
 declare module "statement/App" {
   import { ComponentType } from "react";
-  import { Actions, State } from "./store/index.js";
 
   interface StatementProps {
-    state: State;
-    actions: Actions;
+    accountId: string;
   }
 
   const StatementApp: ComponentType<StatementProps>;
