@@ -3,11 +3,11 @@ import api from "./axios";
 
 export const login = async (user: UserRequest) => {
   try {
-    const request = await api.post(`/login`, { user });
+    const request = await api.post(`/login`, user);
 
     localStorage.setItem("token", request.data.token);
 
-    return request;
+    return request.data.data.token;
   } catch (error) {
     console.error("Error creating user:", error);
     throw error;

@@ -17,14 +17,19 @@ function App() {
     useTransactionStore();
 
   useEffect(() => {
-    const token = login({
+    handleLogin();
+    //  setAccount(token);
+    getUser();
+  }, [getUser]);
+
+  const handleLogin = async () => {
+    const token = await login({
       email: "teste@gmail.com",
       password: "testes",
     });
+    localStorage.setItem("token", token);
     console.log(token);
-    //  setAccount(token);
-    // getUser();
-  }, [getUser]);
+  };
 
   return (
     <BrowserRouter>
@@ -37,7 +42,6 @@ function App() {
           element={
             <Suspense fallback={<div>Carregando Home...</div>}>
               <RemoteHome
-                user={user}
                 account={account}
                 transactionStore={{
                   transactions,
