@@ -1,15 +1,21 @@
 import { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 import { useTransactionStore } from "./store/transaction";
 import { getUser, login } from "./services/userServices";
 import { useAccountStore } from "./store/account";
+import { useSideBarStore } from "./store/navbarStore";
+import { Sidebar } from "./components/Sidebar";
 // Carrega os microfrontends expostos
-const RemoteHome = lazy(() => import("home/App"));
-// const RemoteStatement = React.lazy(() => import("statement/App"));
-// const RemoteNavBar = React.lazy(() => import("nav_bar/App"));
+// const RemoteHome = lazy(() => import("home/App"));
+// const RemoteStatement = lazy(() => import("statement/App"));
+const RemoteNavBar = lazy(() => import("nav_bar/App"));
 
 function App() {
+  const pathname = window.location.pathname;
+  const isMobile = window.innerWidth < 768;
+
+  const { toggleSidebar, setOpen } = useSideBarStore();
   const { account, setAccount } = useAccountStore();
   const { transactions, addTransaction, getTransactions } =
     useTransactionStore();
@@ -34,10 +40,20 @@ function App() {
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Carregando NavBar...</div>}>
-        {/* <RemoteNavBar username={user.username} /> */}
+        <RemoteNavBar
+          toggleSidebar={toggleSidebar}
+          pathname={pathname}
+          setOpen={setOpen}
+        />
       </Suspense>
-      <Routes>
-        <Route
+      <section className="h-screen bg-[#E4EDE3]">
+        <Sidebar
+          isMobile={isMobile}
+          isOpen={toggleSidebar}
+          onClose={() => setOpen(false)}
+        />
+        <Routes>
+          {/* <Route
           path="/"
           element={
             <Suspense fallback={<div>Carregando Home...</div>}>
@@ -51,8 +67,8 @@ function App() {
               />
             </Suspense>
           }
-        />
-        {/* <Route
+        /> */}
+          {/* <Route
           path="/statement"
           element={
             <Suspense fallback={<div>Carregando Statement...</div>}>
@@ -60,7 +76,9 @@ function App() {
             </Suspense>
           }
         /> */}
-      </Routes>
+        </Routes>
+      </section>
+
       <Toaster position="top-right" richColors closeButton />
     </BrowserRouter>
   );

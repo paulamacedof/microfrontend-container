@@ -29,11 +29,11 @@ declare module "statement/App" {
 
 declare module "nav_bar/App" {
   import { ComponentType } from "react";
-  import { Actions, State } from "./store/index.js";
 
   interface NavBarProps {
-    state?: State;
-    actions?: Actions;
+    toggleSidebar: boolean;
+    pathname: string;
+    setOpen: (isOpen: boolean) => void;
   }
 
   const NavBarApp: ComponentType<NavBarProps>;
