@@ -5,6 +5,7 @@ import { useTransactionStore } from "./store/transaction";
 import { getUser, login } from "./services/userServices";
 import { useAccountStore } from "./store/account";
 import { useSideBarStore } from "./store/navbarStore";
+import { Sidebar } from "./components/Sidebar";
 // Carrega os microfrontends expostos
 const RemoteHome = lazy(() => import("home/App"));
 const RemoteStatement = lazy(() => import("statement/App"));
@@ -48,6 +49,12 @@ function App() {
         </section>
       </Suspense>
       <section className="flex flex-col h-screen bg-[#E4EDE3] p-6 lg:justify-center gap-6 lg:flex-row">
+        <Sidebar
+          isMobile={isMobile}
+          isOpen={toggleSidebar}
+          onClose={() => setOpen(false)}
+          pathname={pathname}
+        />
         <Routes>
           <Route
             path="/"
