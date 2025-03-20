@@ -11,7 +11,7 @@ export const getAccount = async (token: string): Promise<AccountResponse> => {
       },
     });
 
-    return request.data;
+    return request.data.data;
   } catch (error) {
     console.error("Error creating transaction:", error);
     throw error;

@@ -40,13 +40,13 @@ function App() {
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Carregando NavBar...</div>}>
-      <section>
-        <RemoteNavBar
-          toggleSidebar={toggleSidebar}
-          pathname={pathname}
-          setOpen={setOpen}
-        />
-      </section>
+        <section>
+          <RemoteNavBar
+            toggleSidebar={toggleSidebar}
+            pathname={pathname}
+            setOpen={setOpen}
+          />
+        </section>
       </Suspense>
       <section className="flex flex-col h-screen bg-[#E4EDE3] p-6 lg:justify-center gap-6 lg:flex-row">
         <Sidebar
@@ -61,12 +61,8 @@ function App() {
             element={
               <Suspense fallback={<div>Carregando Home...</div>}>
                 <RemoteHome
-                  account={account}
-                  transactionStore={{
-                    transactions,
-                    addTransaction,
-                    getTransactions,
-                  }}
+                  accountId={account?.id as string}
+                  addTransaction={addTransaction}
                 />
               </Suspense>
             }
@@ -75,7 +71,7 @@ function App() {
             path="/statement"
             element={
               <Suspense fallback={<div>Carregando Statement...</div>}>
-                <RemoteStatement accountId={"67d5cb96f273c147ae3b0269"} />
+                <RemoteStatement accountId={account?.id as string} />
               </Suspense>
             }
           />

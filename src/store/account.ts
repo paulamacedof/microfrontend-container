@@ -3,12 +3,12 @@ import { getAccount } from "../services/accountService";
 import { create } from "zustand";
 
 interface AccountStore {
-  account: AccountResponse | [];
+  account: AccountResponse | null;
   setAccount: (token: string) => void;
 }
 
 export const useAccountStore = create<AccountStore>((set) => ({
-  account: [],
+  account: null,
 
   setAccount: async (token: string) => {
     const account = await getAccount(token);

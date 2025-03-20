@@ -2,12 +2,8 @@ declare module "home/App" {
   import { ComponentType } from "react";
 
   interface HomeProps {
-    account: AccountResponse;
-    transactionStore: {
-      transactions: TransactionResponse[];
-      addTransaction: (transaction: TransactionResponse) => void;
-      getTransactions: (transactions: TransactionResponse[]) => void;
-    };
+    accountId: string;
+    addTransaction: (transaction: TransactionResponse) => void;
   }
 
   const HomeApp: ComponentType<HomeProps>;
