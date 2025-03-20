@@ -29,7 +29,6 @@ declare module "nav_bar/App" {
     pathname: string;
     setOpen: (isOpen: boolean) => void;
   }
-
   const NavBarApp: ComponentType<NavBarProps>;
   export default NavBarApp;
 }
