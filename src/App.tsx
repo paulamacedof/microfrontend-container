@@ -1,47 +1,81 @@
-import React, { Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useNavBarStore } from "./store/nav-bar";
-import { useTestStore } from "./store";
+import { Toaster } from "sonner";
+import { useTransactionStore } from "./store/transaction";
+import { getUser, login } from "./services/userServices";
+import { useAccountStore } from "./store/account";
+import { useSideBarStore } from "./store/sideBarStore";
+import { Sidebar } from "./components/Sidebar";
 // Carrega os microfrontends expostos
-const RemoteHome = React.lazy(() => import("home/App"));
-const RemoteStatement = React.lazy(() => import("statement/App"));
-const RemoteNavBar = React.lazy(() => import("nav_bar/App"));
+const RemoteHome = lazy(() => import("home/App"));
+const RemoteStatement = lazy(() => import("statement/App"));
+const RemoteNavBar = lazy(() => import("nav_bar/App"));
 
 function App() {
-  const { state, actions } = useTestStore();
-  const { isOpen, setOpen } = useNavBarStore();
-
   const pathname = window.location.pathname;
+  const isMobile = window.innerWidth < 768;
 
-  const stateProps = {
-    toggleSidebar: isOpen,
-    pathname: pathname,
-    user: "Guilherme",
-  };
+  const { toggleSidebar, setOpen } = useSideBarStore();
+  const { account, setAccount } = useAccountStore();
+  const { transactions } = useTransactionStore();
+
+  useEffect(() => {
+    async function handleLogin() {
+      const user = await getUser();
+
+      const token = await login({
+        email: user.email,
+        password: user.password,
+      });
+
+      localStorage.setItem("user", JSON.stringify(user));
+
+      localStorage.setItem("token", token);
+      setAccount(token);
+    }
+
+    handleLogin();
+  }, [setAccount]);
 
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Carregando NavBar...</div>}>
-        <RemoteNavBar state={stateProps} setOpen={setOpen} />
+        <section>
+          <RemoteNavBar
+            toggleSidebar={toggleSidebar}
+            pathname={pathname}
+            setOpen={setOpen}
+          />
+        </section>
       </Suspense>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<div>Carregando Home...</div>}>
-              <RemoteHome state={state} actions={actions} />
-            </Suspense>
-          }
+      <section className="flex flex-col h-screen bg-[#E4EDE3] p-6 lg:justify-center gap-6 lg:flex-row">
+        <Sidebar
+          isMobile={isMobile}
+          isOpen={toggleSidebar}
+          onClose={() => setOpen(false)}
+          pathname={pathname}
         />
-        <Route
-          path="/statement"
-          element={
-            <Suspense fallback={<div>Carregando Statement...</div>}>
-              <RemoteStatement state={state} actions={actions} />
-            </Suspense>
-          }
-        />
-      </Routes>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<div>Carregando Home...</div>}>
+                <RemoteHome account={account} setAccount={setAccount} />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/statement"
+            element={
+              <Suspense fallback={<div>Carregando Statement...</div>}>
+                <RemoteStatement accountId={account?.id as string} />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </section>
+
+      <Toaster position="top-right" richColors closeButton />
     </BrowserRouter>
   );
 }

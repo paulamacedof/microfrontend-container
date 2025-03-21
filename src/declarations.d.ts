@@ -1,10 +1,9 @@
 declare module "home/App" {
   import { ComponentType } from "react";
-  import { Actions, State } from "./store/index.js";
 
   interface HomeProps {
-    state: State;
-    actions: Actions;
+    account: AccountResponse;
+    setAccount: (token: string) => void;
   }
 
   const HomeApp: ComponentType<HomeProps>;
@@ -13,11 +12,9 @@ declare module "home/App" {
 
 declare module "statement/App" {
   import { ComponentType } from "react";
-  import { Actions, State } from "./store/index.js";
 
   interface StatementProps {
-    state: State;
-    actions: Actions;
+    accountId: string;
   }
 
   const StatementApp: ComponentType<StatementProps>;
@@ -28,11 +25,8 @@ declare module "nav_bar/App" {
   import { ComponentType } from "react";
 
   interface NavBarProps {
-    state: {
-      user: string;
-      toggleSidebar: boolean;
-      pathname: string;
-    };
+    toggleSidebar: boolean;
+    pathname: string;
     setOpen: (isOpen: boolean) => void;
   }
   const NavBarApp: ComponentType<NavBarProps>;
