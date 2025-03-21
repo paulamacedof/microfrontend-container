@@ -20,9 +20,9 @@ module.exports = {
         new ModuleFederationPlugin({
           name: "container",
           remotes: {
-            // home: `home@${homeUrl}/remoteEntry.js`,
+            home: `home@${homeUrl}/remoteEntry.js`,
             statement: `statement@${statementUrl}/remoteEntry.js`,
-            // nav_bar: `nav_bar@${navBarUrl}/remoteEntry.js`,
+            nav_bar: `nav_bar@${navBarUrl}/remoteEntry.js`,
           },
 
           shared: {

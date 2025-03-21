@@ -6,9 +6,9 @@ import { useAccountStore } from "./store/account";
 import { useSideBarStore } from "./store/sideBarStore";
 import { Sidebar } from "./components/Sidebar";
 // Carrega os microfrontends expostos
-// const RemoteHome = lazy(() => import("home/App"));
+const RemoteHome = lazy(() => import("home/App"));
 const RemoteStatement = lazy(() => import("statement/App"));
-// const RemoteNavBar = lazy(() => import("nav_bar/App"));
+const RemoteNavBar = lazy(() => import("nav_bar/App"));
 
 function App() {
   const pathname = window.location.pathname;
@@ -39,11 +39,11 @@ function App() {
     <BrowserRouter>
       <Suspense fallback={<div>Carregando NavBar...</div>}>
         <section>
-          {/* <RemoteNavBar
+          <RemoteNavBar
             toggleSidebar={toggleSidebar}
             pathname={pathname}
             setOpen={setOpen}
-          /> */}
+          />
         </section>
       </Suspense>
       <section className="flex flex-col h-screen bg-[#E4EDE3] p-6 lg:justify-center gap-6 lg:flex-row">
@@ -54,14 +54,14 @@ function App() {
           pathname={pathname}
         />
         <Routes>
-          {/* <Route
+          <Route
             path="/"
             element={
               <Suspense fallback={<div>Carregando Home...</div>}>
                 <RemoteHome account={account} setAccount={setAccount} />
               </Suspense>
             }
-          /> */}
+          />
           <Route
             path="/statement"
             element={
