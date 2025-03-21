@@ -1,4 +1,4 @@
-import { RiCloseFill } from "react-icons/ri";
+// import { RiCloseFill } from "react-icons/ri";
 
 interface SidebarProps {
   isMobile?: boolean;
@@ -34,7 +34,7 @@ export function Sidebar({
         onClick={onClose}
         className="text-gray-500 flex justify-end text-right z-10 transition hover:text-sky md:hidden"
       >
-        <RiCloseFill color="#47A138" />
+        {/* <RiCloseFill color="#47A138" /> */}
       </button>
 
       <nav>
