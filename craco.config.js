@@ -32,16 +32,16 @@ module.exports = {
               eager: true,
               requiredVersion: "^18.3.1",
             },
-            sonner: {
-              singleton: true,
-              eager: true,
-              requiredVersion: "^1.7.2",
-            },
-            "react-icons": {
-              singleton: true,
-              eager: true,
-              requiredVersion: "^5.4.0",
-            },
+            // sonner: {
+            //   singleton: true,
+            //   eager: true,
+            //   requiredVersion: "^1.7.2",
+            // },
+            // "react-icons": {
+            //   singleton: true,
+            //   eager: true,
+            //   requiredVersion: "^5.4.0",
+            // },
           },
         })
       );
