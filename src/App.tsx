@@ -4,7 +4,7 @@ import { Toaster } from "sonner";
 import { useTransactionStore } from "./store/transaction";
 import { getUser, login } from "./services/userServices";
 import { useAccountStore } from "./store/account";
-import { useSideBarStore } from "./store/navbarStore";
+import { useSideBarStore } from "./store/sideBarStore";
 import { Sidebar } from "./components/Sidebar";
 // Carrega os microfrontends expostos
 const RemoteHome = lazy(() => import("home/App"));
@@ -17,8 +17,7 @@ function App() {
 
   const { toggleSidebar, setOpen } = useSideBarStore();
   const { account, setAccount } = useAccountStore();
-  const { transactions, addTransaction, getTransactions } =
-    useTransactionStore();
+  const { transactions } = useTransactionStore();
 
   useEffect(() => {
     async function handleLogin() {
@@ -28,6 +27,7 @@ function App() {
         email: user.email,
         password: user.password,
       });
+
       localStorage.setItem("user", JSON.stringify(user));
 
       localStorage.setItem("token", token);
@@ -60,10 +60,7 @@ function App() {
             path="/"
             element={
               <Suspense fallback={<div>Carregando Home...</div>}>
-                <RemoteHome
-                  accountId={account?.id as string}
-                  addTransaction={addTransaction}
-                />
+                <RemoteHome account={account} setAccount={setAccount} />
               </Suspense>
             }
           />
