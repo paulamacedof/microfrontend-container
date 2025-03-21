@@ -15,3 +15,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@layer utilities {
+  .link {
+    @apply block py-4 md:py-0 lg:py-4 border-b-2 border-[#004d61] md:border-transparent lg:border-[#004d61] transition hover:text-lime-500 hover:border-lime-400;
+  }
+  .link.active {
+    @apply font-bold text-lime-600 border-lime-500 transition hover:text-lime-500 hover:border-lime-400;
+  }
+  .link.disabled {
+    @apply opacity-40 pointer-events-none;
+  }
+}
