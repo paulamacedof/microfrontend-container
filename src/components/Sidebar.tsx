@@ -1,5 +1,4 @@
-// import { RiCloseFill } from "react-icons/ri";
-
+import { FaXmark } from "react-icons/fa6";
 interface SidebarProps {
   isMobile?: boolean;
   isOpen?: boolean;
@@ -34,7 +33,7 @@ export function Sidebar({
         onClick={onClose}
         className="text-gray-500 flex justify-end text-right z-10 transition hover:text-sky md:hidden"
       >
-        {/* <RiCloseFill color="#47A138" /> */}
+        <FaXmark color="#47A138" />
       </button>
 
       <nav>
