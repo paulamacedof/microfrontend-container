@@ -1,7 +1,6 @@
 import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
-import { useTransactionStore } from "./store/transaction";
 import { getUser, login } from "./services/userServices";
 import { useAccountStore } from "./store/account";
 import { useSideBarStore } from "./store/sideBarStore";
@@ -17,7 +16,6 @@ function App() {
 
   const { toggleSidebar, setOpen } = useSideBarStore();
   const { account, setAccount } = useAccountStore();
-  const { transactions } = useTransactionStore();
 
   useEffect(() => {
     async function handleLogin() {
