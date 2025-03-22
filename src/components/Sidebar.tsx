@@ -38,20 +38,11 @@ export function Sidebar({
 
       <nav>
         <ul className="flex flex-col  md:flex-row md:justify-between lg:block">
-          {links.map((link, index) => (
-            <li
-              className={`text-center py-4 text-[#004D61] lg:text-start ${
-                index !== links.length - 1 ? "border-b border-[#004D61] " : ""
-              }  ${
-                pathname === link.href
-                  ? `font-bold text-[#FF5031] md:text-[#47A138] md:border-[#47A138] `
-                  : ""
-              }`}
-              key={link.href}
-            >
+          {links.map((link) => (
+            <li key={link.href}>
               <a
                 href={link.href}
-                className={` ${
+                className={`link ${pathname === link.href ? "active" : ""} ${
                   ["/investments", "/other-services"].includes(link.href)
                     ? "disabled"
                     : ""
