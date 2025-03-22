@@ -9,16 +9,18 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /^(rounded|font|ms-\d+|bg-\[.*?\]|bg|text|p[tbxy]?|m[tbxyd]?|flex|grid|h|w|gap|justify|items|border|max|min)-?.*/,
+        /^(hover:)?(rounded|font|ms-\d+|bg-\[.*?\]|bg|text|p[tbxy]?|m[tbxyd]?|flex|grid|h|w|gap|justify|items|border|max|min)-?.*/,
     },
     {
       pattern: /^(sm:|md:|lg:|xl:|2xl:|hover:).*/,
     },
     "bg-[#004D61]",
     "bg-[#E4EDE3]",
+    "text-[#47A138]",
     "text-[#84cc16]",
     "text-[25px]",
     "border-[#84cc16]",
+    "border-[#47A138]",
     "md:text-left",
     "md:gap-10",
     "md:p-6",
@@ -30,6 +32,7 @@ module.exports = {
     "lg:max-h-[500px]",
     "lg:min-w-[300px]",
     "lg:grid-cols-1",
+    "capitalize"
   ],
   theme: {
     extend: {},
