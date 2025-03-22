@@ -46,7 +46,7 @@ function App() {
           />
         </section>
       </Suspense>
-      <section className="flex flex-col h-screen bg-[#E4EDE3] p-6 lg:justify-center gap-6 lg:flex-row">
+      <section className="flex flex-col min-h-screen bg-[#E4EDE3] p-6 lg:justify-center gap-6 lg:flex-row">
         <Sidebar
           isMobile={isMobile}
           isOpen={toggleSidebar}
@@ -66,7 +66,7 @@ function App() {
             path="/statement"
             element={
               <Suspense fallback={<div>Carregando Statement...</div>}>
-                <RemoteStatement accountId={account?.id as string} />
+                <RemoteStatement account={account} setAccount={setAccount} />
               </Suspense>
             }
           />

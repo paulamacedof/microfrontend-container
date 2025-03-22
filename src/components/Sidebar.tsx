@@ -23,9 +23,9 @@ export function Sidebar({
 
   return (
     <section
-      className={`text-[#004D61] font-semibold ${
+      className={`text-[#004D61] font-semibold min-w-[180px] ${
         isMobile
-          ? `fixed top-0 left-0 bg-white h-[250px] w-[172px] shadow-lg pb-6 px-[11px] z-50 transform transition-transform p-2 flex flex-col ${mobileClasses}`
+          ? `fixed top-0 left-0 bg-white shadow-lg pb-6 px-[11px] z-50 transform transition-transform p-2 flex flex-col ${mobileClasses}`
           : "hidden md:block bg-white max-h-[500px] rounded-lg p-6 md:p-4 md:col-span-2  lg:col-span-1 lg:p-6"
       }`}
     >

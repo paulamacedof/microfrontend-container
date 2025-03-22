@@ -14,7 +14,8 @@ declare module "statement/App" {
   import { ComponentType } from "react";
 
   interface StatementProps {
-    accountId: string;
+    account: AccountResponse;
+    setAccount: (token: string) => void;
   }
 
   const StatementApp: ComponentType<StatementProps>;
