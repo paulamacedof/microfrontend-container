@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# Microfrontend Container
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este repositório contém o **container** principal responsável por orquestrar os microfrontends da aplicação utilizando **Module Federation** com **Webpack 5**. Ele integra as partes independentes da aplicação em uma experiência única e fluida.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🧩 Microfrontends orquestrados
 
-### `npm start`
+O container carrega dinamicamente os seguintes microfrontends:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [`home`](https://home-vert-five.vercel.app) – Tela inicial da aplicação
+- [`nav-bar`](https://nav-bar-vert.vercel.app) – Barra de navegação superior
+- [`statement`](https://statement-vert.vercel.app) – Extrato bancário e transações
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Esses microfrontends são consumidos via `Module Federation`, e integrados utilizando `React Router`.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Tecnologias utilizadas
 
-### `npm run build`
+- **React** – Biblioteca principal de UI
+- **TypeScript** – Tipagem estática e segura
+- **Webpack 5** + **Module Federation** – Compartilhamento e consumo remoto de código
+- **CRACO** – Customização do Create React App sem ejetar
+- **Tailwind CSS** – Estilização utilitária moderna
+- **React Router** – Gerenciamento de rotas
+- **Zustand** – Gerenciamento de estado local leve
+- **Sonner** – Sistema de notificações (toast)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ⚙️ Estrutura de pastas
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+src/
+├── components/     # Componentes locais (ex: Sidebar)
+├── services/       # Serviços como autenticação
+├── store/          # Zustand para gerenciamento de estado
+├── App.tsx         # Integração entre os microfrontends
+└── index.tsx       # Ponto de entrada da aplicação
+```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## ▶️ Como rodar localmente
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone o repositório:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+git clone https://github.com/paulamacedof/microfrontend-container.git
+cd microfrontend-container
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Instale as dependências:
 
-## Learn More
+```bash
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Rode o projeto:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm start
+```
 
-### Code Splitting
+O container estará disponível em:  
+🌐 [http://localhost:3000](http://localhost:3000)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+⚠️ **Importante**: para funcionar corretamente, os microfrontends devem estar rodando nas seguintes portas:
 
-### Analyzing the Bundle Size
+- `home`: http://localhost:3001
+- `statement`: http://localhost:3002
+- `nav-bar`: http://localhost:3003
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🌐 Produção
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Em produção, os microfrontends são carregados a partir das suas URLs públicas (Vercel), conforme definido no `ModuleFederationPlugin`. O container pode ser hospedado em qualquer serviço de hospedagem estática.
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 📦 Build para produção
 
-### Deployment
+Para gerar o bundle de produção:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+npm run build
+```
 
-### `npm run build` fails to minify
+Isso criará a pasta `build/` pronta para deploy.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas!  
+Sinta-se à vontade para abrir issues ou pull requests.
+
+---
+
+## 📋 Instruções de uso
+
+Para utilizar o container, certifique-se de que todos os microfrontends estão operacionais e acessíveis nas portas especificadas. Após iniciar o container, você pode navegar entre os microfrontends utilizando a barra de navegação superior. A interação entre os microfrontends é feita de forma fluida, garantindo uma experiência de usuário integrada.
+
+---
+
+## 🔔 Nota sobre o backend
+
+> **NOTA:**  
+> O backend da aplicação está hospedado no free tier da plataforma [Render](https://render.com), que pode hibernar o servidor por tempo de inatividade.
+>
+> Nesse caso, é possível que a API devolva um erro com **Status 504** nos primeiros acessos.
+>
+> Caso isso ocorra, _tente novamente em alguns segundos_ enquanto o servidor é reativado.
