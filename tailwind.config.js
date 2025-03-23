@@ -46,6 +46,9 @@ module.exports = {
     "bg-right-top",
     "md:w-1/3",
     "md:min-w-96",
+    "overflow-y-auto",
+    "max-h-[630px]",
+    "lg:max-h-[400px]",
   ],
   theme: {
     extend: {},
