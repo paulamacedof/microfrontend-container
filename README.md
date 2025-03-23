@@ -9,8 +9,8 @@ Este repositório contém o **container** principal responsável por orquestrar 
 O container carrega dinamicamente os seguintes microfrontends:
 
 - [`home`](https://home-vert-five.vercel.app) – Tela inicial da aplicação
-- [`nav-bar`](https://nav-bar-vert.vercel.app) – Barra de navegação superior
-- [`statement`](https://statement-vert.vercel.app) – Extrato bancário e transações
+- [`nav-bar`](https://nav-bar-gamma-green.vercel.app) – Barra de navegação superior
+- [`statement`](https://statement-pink.vercel.app) – Extrato bancário e transações
 
 Esses microfrontends são consumidos via `Module Federation`, e integrados utilizando `React Router`.
 
