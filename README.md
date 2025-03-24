@@ -2,6 +2,12 @@
 
 Este repositório contém o **container** principal responsável por orquestrar os microfrontends da aplicação utilizando **Module Federation** com **Webpack 5**. Ele integra as partes independentes da aplicação em uma experiência única e fluida.
 
+> **NOTA:**
+>
+> _O backend da aplicação está hosteado no free tier da plataforma [**Render**](https://render.com/), que pode hibernar o servidor por tempo de inatividade. Nesse caso, pode ocorrer da API devolver um erro com [**Status 504**](https://http.dog/504) nos primeiros acessos._
+>
+> _Caso isto ocorra, **tente novamente em alguns segundos** enquanto o servidor "acorda"._
+
 ---
 
 ## 🧩 Microfrontends orquestrados
